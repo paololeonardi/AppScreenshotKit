@@ -13,7 +13,8 @@ import Testing
 
         private struct NewDevicesScreenshot: AppScreenshot {
             static let configuration = AppScreenshotConfiguration(
-                .iPhone69Inch(model: .iPhone18ProMax())
+                .iPhone69Inch(model: .iPhone18ProMax()),
+                .iPad130Inch(model: .iPadPro13M5())
             )
 
             static func body(environment: AppScreenshotEnvironment) -> some View {
@@ -29,7 +30,8 @@ import Testing
 
             #expect(
                 pixelSizes == [
-                    CGSize(width: 1320, height: 2868)
+                    CGSize(width: 1320, height: 2868),
+                    CGSize(width: 2048, height: 2732),
                 ]
             )
         }

@@ -181,6 +181,24 @@ struct AppleDesignResourceBezelDefinition {
                 self.imageSize = CGSize(width: 2732, height: 1370)
                 self.screenRect = CGRect(x: 101, y: 100, width: 2531, height: 1170)
             }
+        case .iPadPro11M5:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1880, height: 2640)
+                self.screenRect = CGRect(x: 106, y: 110, width: 1668, height: 2420)
+            case .landscape:
+                self.imageSize = CGSize(width: 2640, height: 1880)
+                self.screenRect = CGRect(x: 110, y: 106, width: 2420, height: 1668)
+            }
+        case .iPadPro13M5:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 2300, height: 3000)
+                self.screenRect = CGRect(x: 118, y: 124, width: 2064, height: 2752)
+            case .landscape:
+                self.imageSize = CGSize(width: 3000, height: 2300)
+                self.screenRect = CGRect(x: 124, y: 118, width: 2752, height: 2064)
+            }
         case .iPadPro11M4:
             switch orientation {
             case .portrait:

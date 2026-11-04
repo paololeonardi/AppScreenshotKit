@@ -28,6 +28,11 @@ extension AppScreenshotSize {
         let color: DeviceColor
         let model: DeviceModel
 
+        public enum IPadPro13M5Color {
+            case spaceBlack
+            case silver
+        }
+
         public enum IPadPro13Color {
             case spaceGray
             case silver
@@ -52,6 +57,13 @@ extension AppScreenshotSize {
             }
         }
 
+        public static func iPadPro13M5(
+            color: IPadPro13M5Color = .spaceBlack,
+            orientation: DeviceOrientation = .portrait
+        ) -> IPad130InchModel {
+            Self.init(orientation: orientation, color: color.deviceColor, model: .iPadPro13M5)
+        }
+
         public static func iPadPro13M4(
             color: IPadPro13Color = .spaceGray,
             orientation: DeviceOrientation = .portrait
@@ -64,6 +76,15 @@ extension AppScreenshotSize {
             orientation: DeviceOrientation = .portrait
         ) -> IPad130InchModel {
             Self.init(orientation: orientation, color: color.deviceColor, model: .iPadAir13M2)
+        }
+    }
+}
+
+extension AppScreenshotSize.IPad130InchModel.IPadPro13M5Color: DeviceColorConvertable {
+    var deviceColor: DeviceColor {
+        switch self {
+        case .spaceBlack: .spaceBlack
+        case .silver: .silver
         }
     }
 }
@@ -88,12 +109,20 @@ extension AppScreenshotSize.IPad130InchModel.IPadAirColor: DeviceColorConvertabl
     }
 }
 
+extension AppScreenshotSize.IPad130InchModel.IPadPro13M5Color: CaseIterable {}
 extension AppScreenshotSize.IPad130InchModel.IPadPro13Color: CaseIterable {}
 extension AppScreenshotSize.IPad130InchModel.IPadAirColor: CaseIterable {}
 extension AppScreenshotSize.IPad130InchModel.AppScreenshotSizeOption: CaseIterable {}
 
 extension AppScreenshotSize {
 
+    static var iPadPro13M5All: [AppScreenshotSize] {
+        allCases(
+            of: .iPadPro13M5,
+            color: IPad130InchModel.IPadPro13M5Color.self,
+            size: IPad130InchModel.AppScreenshotSizeOption.self
+        )
+    }
     static var iPadPro13M4All: [AppScreenshotSize] {
         allCases(
             of: .iPadPro13M4,
@@ -110,6 +139,6 @@ extension AppScreenshotSize {
     }
 
     static var iPad130InchAll: [AppScreenshotSize] {
-        iPadPro13M4All + iPadAir13M2All
+        iPadPro13M5All + iPadPro13M4All + iPadAir13M2All
     }
 }

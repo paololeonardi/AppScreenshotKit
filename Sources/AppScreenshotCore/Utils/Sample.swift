@@ -55,6 +55,11 @@ package enum AppScreenshoSamples {
             sizes: AppScreenshotSize.iPadMiniAll
         )
     }
+    package enum AppScreenshotIpadPro11M5: AppScreenshoSample {
+        package static let configuration = AppScreenshotConfiguration(
+            sizes: AppScreenshotSize.iPadPro11M5All
+        )
+    }
     package enum AppScreenshotIpadPro11M4: AppScreenshoSample {
         package static let configuration = AppScreenshotConfiguration(
             sizes: AppScreenshotSize.iPadPro11M4All
@@ -63,6 +68,11 @@ package enum AppScreenshoSamples {
     package enum AppScreenshotIpadAir11M2: AppScreenshoSample {
         package static let configuration = AppScreenshotConfiguration(
             sizes: AppScreenshotSize.iPadAir11M2All
+        )
+    }
+    package enum AppScreenshotIpadPro13M5: AppScreenshoSample {
+        package static let configuration = AppScreenshotConfiguration(
+            sizes: AppScreenshotSize.iPadPro13M5All
         )
     }
     package enum AppScreenshotIpadPro13M4: AppScreenshoSample {

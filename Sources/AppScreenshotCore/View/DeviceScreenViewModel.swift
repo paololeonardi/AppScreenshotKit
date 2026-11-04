@@ -51,6 +51,16 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             case .portrait: CGSize(width: 390, height: 844)
             case .landscape: CGSize(width: 844, height: 390)
             }
+        case .iPadPro11M5:
+            return switch orientation {
+            case .portrait: CGSize(width: 834, height: 1210)
+            case .landscape: CGSize(width: 1210, height: 834)
+            }
+        case .iPadPro13M5:
+            return switch orientation {
+            case .portrait: CGSize(width: 1032, height: 1376)
+            case .landscape: CGSize(width: 1376, height: 1032)
+            }
         case .iPadPro11M4:
             return switch orientation {
             case .portrait: CGSize(width: 834, height: 1194)
@@ -110,6 +120,8 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             return EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
         case .iPadMini:
             return EdgeInsets(top: 24, leading: 0, bottom: 20, trailing: 0)
+        case .iPadPro13M5, .iPadPro11M5:
+            return EdgeInsets(top: 32, leading: 0, bottom: 20, trailing: 0)
         case .iPadPro13M4, .iPadPro11M4, .iPadAir13M2, .iPadAir11M2:
             return EdgeInsets(top: 24, leading: 0, bottom: 20, trailing: 0)
         }

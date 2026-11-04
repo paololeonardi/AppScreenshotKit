@@ -28,6 +28,8 @@ public enum DeviceModel: String, Sendable {
     case iPhone15 = "iPhone 15"
     case iPhone14Pro = "iPhone 14 Pro"
     case iPhone14 = "iPhone 14"
+    case iPadPro11M5 = "iPad Pro 11 - M5"
+    case iPadPro13M5 = "iPad Pro 13 - M5"
     case iPadPro11M4 = "iPad Pro 11 - M4"
     case iPadPro13M4 = "iPad Pro 13 - M4"
     case iPadAir11M2 = "iPad Air 11\" - M2"
@@ -37,7 +39,9 @@ public enum DeviceModel: String, Sendable {
 
     public var category: DeviceCategory {
         switch self {
-        case .iPadPro11M4, .iPadPro13M4, .iPadAir11M2, .iPadAir13M2, .iPadMini, .iPad: .iPad
+        case .iPadPro11M5, .iPadPro13M5, .iPadPro11M4, .iPadPro13M4, .iPadAir11M2, .iPadAir13M2,
+            .iPadMini, .iPad:
+            .iPad
         default: .iPhone
         }
     }
@@ -53,8 +57,8 @@ public enum DeviceModel: String, Sendable {
             .iPhone14Pro:
             "6_3"
         case .iPhone14: "6_1"
-        case .iPadAir13M2, .iPadPro13M4: "13"
-        case .iPadAir11M2, .iPadPro11M4: "11"
+        case .iPadPro13M5, .iPadAir13M2, .iPadPro13M4: "13"
+        case .iPadPro11M5, .iPadAir11M2, .iPadPro11M4: "11"
         case .iPad, .iPadMini: "9_7"
         }
     }

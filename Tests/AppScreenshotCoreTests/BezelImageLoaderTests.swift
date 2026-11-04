@@ -172,6 +172,16 @@ final class BezelImageLoaderTests {
             "iPhone 18 Pro Max - Glacier - Landscape.png",
             "iPhone 18 Pro Max - Glacier - Portrait.png"
         ),
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .spaceBlack, model: .iPadPro13M5),
+            #"iPad Pro (M5) 13" - Space Black - Portrait.png"#,
+            #"iPad Pro (M5) 13" - Space Black - Landscape.png"#
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .silver, model: .iPadPro13M5),
+            #"iPad Pro (M5) 13" - Silver - Landscape.png"#,
+            #"iPad Pro (M5) 13" - Silver - Portrait.png"#
+        ),
     ])
     func findsBezelNamedAsApple(
         device: AppScreenshotDevice,

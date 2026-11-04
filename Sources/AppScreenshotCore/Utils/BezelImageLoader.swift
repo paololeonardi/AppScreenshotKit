@@ -36,6 +36,8 @@ struct BezelImageLoader {
 
         let candidates =
             switch device.model {
+            case .iPadPro11M5: [#"iPad Pro (M5) 11""#]
+            case .iPadPro13M5: [#"iPad Pro (M5) 13""#]
             case .iPadPro11M4: ["iPad Pro 11(M4)"]
             case .iPadPro13M4: ["iPad Pro 13 (M4)"]
             case .iPadAir11M2: ["iPad Air 11 (M2)"]

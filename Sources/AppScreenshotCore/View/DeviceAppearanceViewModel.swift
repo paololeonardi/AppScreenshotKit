@@ -95,9 +95,9 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
             .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
             .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
             10
-        case .iPadAir13M2, .iPadPro13M4: 44
+        case .iPadPro13M5, .iPadAir13M2, .iPadPro13M4: 44
         case .iPadMini, .iPad: 60
-        case .iPadAir11M2, .iPadPro11M4: 54
+        case .iPadPro11M5, .iPadAir11M2, .iPadPro11M4: 54
         }
     }
 
@@ -108,7 +108,8 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
             .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
             .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
             return 6
-        case .iPadMini, .iPadAir11M2, .iPadAir13M2, .iPadPro11M4, .iPadPro13M4, .iPad:
+        case .iPadMini, .iPadAir11M2, .iPadAir13M2, .iPadPro11M4, .iPadPro13M4, .iPadPro11M5,
+            .iPadPro13M5, .iPad:
             return 8
         }
     }
@@ -135,7 +136,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
             55
         case .iPhone18Pro, .iPhone17Pro, .iPhone16Pro: 62
         case .iPhone17, .iPhone16, .iPhone15, .iPhone15Pro, .iPhone14Pro, .iPhone14: 47.33
-        case .iPadPro11M4, .iPadPro13M4: 30
+        case .iPadPro11M5, .iPadPro13M5, .iPadPro11M4, .iPadPro13M4: 30
         case .iPadAir11M2, .iPadAir13M2: 18
         case .iPadMini: 21.5
         case .iPad: 0
