@@ -158,4 +158,63 @@ final class BezelImageLoaderTests {
 
         #expect(data == expectedData)
     }
+
+    // MARK: - Apple Design Resources file names
+
+    @Test(arguments: [
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .black, model: .iPhone18ProMax),
+            "iPhone 18 Pro Max - Black - Portrait.png",
+            "iPhone 18 Pro Max - Black - Landscape.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .glacier, model: .iPhone18ProMax),
+            "iPhone 18 Pro Max - Glacier - Landscape.png",
+            "iPhone 18 Pro Max - Glacier - Portrait.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .spaceBlack, model: .iPadPro13M5),
+            #"iPad Pro (M5) 13" - Space Black - Portrait.png"#,
+            #"iPad Pro (M5) 13" - Space Black - Landscape.png"#
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .silver, model: .iPadPro13M5),
+            #"iPad Pro (M5) 13" - Silver - Landscape.png"#,
+            #"iPad Pro (M5) 13" - Silver - Portrait.png"#
+        ),
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .nightSky, model: .iPhoneDuoOuter),
+            "iPhone Duo - Night Sky - Outer Closed Portrait.png",
+            "iPhone Duo - Night Sky - Outer Closed Landscape.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .starWhite, model: .iPhoneDuoOuter),
+            "iPhone Duo - Star White - Outer Closed Landscape.png",
+            "iPhone Duo - Star White - Outer Closed Portrait.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .nightSky, model: .iPhoneDuoInner),
+            "iPhone Duo - Night Sky - Inner Open Portrait.png",
+            "iPhone Duo - Night Sky - Inner Open Landscape.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .starWhite, model: .iPhoneDuoInner),
+            "iPhone Duo - Star White - Inner Open Landscape.png",
+            "iPhone Duo - Star White - Inner Open Portrait.png"
+        ),
+    ])
+    func findsBezelNamedAsApple(
+        device: AppScreenshotDevice,
+        fileName: String,
+        otherOrientationFileName: String
+    ) throws {
+        let baseDirectory = tempRootURL.appending(path: "AppleDesignResource")
+        let payload = Data(fileName.utf8)
+        try writeBezelFile(under: baseDirectory, fileName: fileName, contents: payload)
+        try writeBezelFile(under: baseDirectory, fileName: otherOrientationFileName)
+
+        let data = try BezelImageLoader().imageData(device, resourceBaseURL: baseDirectory)
+
+        #expect(data == payload)
+    }
 }

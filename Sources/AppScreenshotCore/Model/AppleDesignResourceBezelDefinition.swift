@@ -19,6 +19,42 @@ struct AppleDesignResourceBezelDefinition {
     ///   - orientation: The device orientation (portrait or landscape).
     init(deviceModel: DeviceModel, orientation: DeviceOrientation) {
         switch deviceModel {
+        case .iPhone18ProMax:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1470, height: 3000)
+                self.screenRect = CGRect(x: 75, y: 66, width: 1320, height: 2868)
+            case .landscape:
+                self.imageSize = CGSize(width: 3000, height: 1470)
+                self.screenRect = CGRect(x: 66, y: 76, width: 2868, height: 1320)
+            }
+        case .iPhone18Pro:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1350, height: 2760)
+                self.screenRect = CGRect(x: 72, y: 69, width: 1206, height: 2622)
+            case .landscape:
+                self.imageSize = CGSize(width: 2760, height: 1350)
+                self.screenRect = CGRect(x: 69, y: 72, width: 2622, height: 1206)
+            }
+        case .iPhoneDuoOuter:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1574, height: 2194)
+                self.screenRect = CGRect(x: 88, y: 80, width: 1398, height: 2034)
+            case .landscape:
+                self.imageSize = CGSize(width: 2194, height: 1574)
+                self.screenRect = CGRect(x: 80, y: 88, width: 2034, height: 1398)
+            }
+        case .iPhoneDuoInner:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 2247, height: 3093)
+                self.screenRect = CGRect(x: 120, y: 120, width: 2007, height: 2853)
+            case .landscape:
+                self.imageSize = CGSize(width: 3093, height: 2247)
+                self.screenRect = CGRect(x: 120, y: 120, width: 2853, height: 2007)
+            }
         case .iPhone17ProMax:
             switch orientation {
             case .portrait:
@@ -162,6 +198,24 @@ struct AppleDesignResourceBezelDefinition {
             case .landscape:
                 self.imageSize = CGSize(width: 2732, height: 1370)
                 self.screenRect = CGRect(x: 101, y: 100, width: 2531, height: 1170)
+            }
+        case .iPadPro11M5:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1880, height: 2640)
+                self.screenRect = CGRect(x: 106, y: 110, width: 1668, height: 2420)
+            case .landscape:
+                self.imageSize = CGSize(width: 2640, height: 1880)
+                self.screenRect = CGRect(x: 110, y: 106, width: 2420, height: 1668)
+            }
+        case .iPadPro13M5:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 2300, height: 3000)
+                self.screenRect = CGRect(x: 118, y: 124, width: 2064, height: 2752)
+            case .landscape:
+                self.imageSize = CGSize(width: 3000, height: 2300)
+                self.screenRect = CGRect(x: 124, y: 118, width: 2752, height: 2064)
             }
         case .iPadPro11M4:
             switch orientation {

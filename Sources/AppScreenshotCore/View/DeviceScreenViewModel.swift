@@ -21,7 +21,7 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
 
     var screenSize: CGSize {
         switch model {
-        case .iPhone17ProMax, .iPhone16ProMax:
+        case .iPhone18ProMax, .iPhone17ProMax, .iPhone16ProMax:
             return switch orientation {
             case .portrait: CGSize(width: 440, height: 956)
             case .landscape: CGSize(width: 956, height: 440)
@@ -36,7 +36,7 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             case .portrait: CGSize(width: 428, height: 926)
             case .landscape: CGSize(width: 926, height: 428)
             }
-        case .iPhone17Pro, .iPhone16Pro:
+        case .iPhone18Pro, .iPhone17Pro, .iPhone16Pro:
             return switch orientation {
             case .portrait: CGSize(width: 402, height: 874)
             case .landscape: CGSize(width: 874, height: 402)
@@ -50,6 +50,26 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             return switch orientation {
             case .portrait: CGSize(width: 390, height: 844)
             case .landscape: CGSize(width: 844, height: 390)
+            }
+        case .iPhoneDuoOuter:
+            return switch orientation {
+            case .portrait: CGSize(width: 466, height: 678)
+            case .landscape: CGSize(width: 678, height: 466)
+            }
+        case .iPhoneDuoInner:
+            return switch orientation {
+            case .portrait: CGSize(width: 669, height: 951)
+            case .landscape: CGSize(width: 951, height: 669)
+            }
+        case .iPadPro11M5:
+            return switch orientation {
+            case .portrait: CGSize(width: 834, height: 1210)
+            case .landscape: CGSize(width: 1210, height: 834)
+            }
+        case .iPadPro13M5:
+            return switch orientation {
+            case .portrait: CGSize(width: 1032, height: 1376)
+            case .landscape: CGSize(width: 1376, height: 1032)
             }
         case .iPadPro11M4:
             return switch orientation {
@@ -85,7 +105,8 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
     }
     var safeAreaInsets: EdgeInsets {
         switch model {
-        case .iPhone17ProMax, .iPhone16ProMax, .iPhone17Pro, .iPhone16Pro:
+        case .iPhone18ProMax, .iPhone17ProMax, .iPhone16ProMax, .iPhone18Pro, .iPhone17Pro,
+            .iPhone16Pro:
             return switch orientation {
             case .portrait: EdgeInsets(top: 62, leading: 0, bottom: 34, trailing: 0)
             case .landscape: EdgeInsets(top: 0, leading: 62, bottom: 21, trailing: 62)
@@ -105,16 +126,30 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             case .portrait: EdgeInsets(top: 59, leading: 0, bottom: 34, trailing: 0)
             case .landscape: EdgeInsets(top: 0, leading: 59, bottom: 21, trailing: 59)
             }
+        case .iPhoneDuoOuter:
+            // The bars follow the corner camera, which Apple's landscape bezel draws on the left.
+            return switch orientation {
+            case .portrait: EdgeInsets(top: 0, leading: 0, bottom: 34, trailing: 84)
+            case .landscape: EdgeInsets(top: 0, leading: 84, bottom: 34, trailing: 0)
+            }
+        case .iPhoneDuoInner:
+            return switch orientation {
+            case .portrait: EdgeInsets(top: 82, leading: 0, bottom: 34, trailing: 0)
+            case .landscape: EdgeInsets(top: 0, leading: 0, bottom: 34, trailing: 84)
+            }
         case .iPad:
             return EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
         case .iPadMini:
             return EdgeInsets(top: 24, leading: 0, bottom: 20, trailing: 0)
+        case .iPadPro13M5, .iPadPro11M5:
+            return EdgeInsets(top: 32, leading: 0, bottom: 20, trailing: 0)
         case .iPadPro13M4, .iPadPro11M4, .iPadAir13M2, .iPadAir11M2:
             return EdgeInsets(top: 24, leading: 0, bottom: 20, trailing: 0)
         }
     }
 
     var horizontalSizeClass: UserInterfaceSizeClass {
+        if model == .iPhoneDuoInner { return .regular }
         switch model.category {
         case .iPad:
             // iPadは常にregular
@@ -126,7 +161,7 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             case .landscape:
                 // Plus/Max系はlandscapeでregular
                 switch model {
-                case .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
+                case .iPhone18ProMax, .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
                     .iPhone15ProMax, .iPhone15Plus, .iPhone14ProMax, .iPhone14Plus:
                     return .regular
                 default:
@@ -137,6 +172,7 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
     }
 
     var verticalSizeClass: UserInterfaceSizeClass {
+        if model == .iPhoneDuoInner { return .regular }
         switch model.category {
         case .iPad:
             // iPadは常にregular

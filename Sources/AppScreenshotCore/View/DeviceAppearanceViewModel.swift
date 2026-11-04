@@ -12,6 +12,7 @@ import SwiftUI
 protocol DeviceAppearanceViewModel {
     var bezelWidth: CGFloat { get }
     var bezelRadius: CGFloat { get }
+    var screenShape: AnyShape { get }
     var deviceViewSize: CGSize { get }
     var deviceFrameWidth: CGFloat { get }
     var deviceColor: Color { get }
@@ -77,6 +78,10 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         case .skyBlue: Color(red: 106 / 255, green: 121 / 255, blue: 131 / 255)
         case .lightGold: Color(red: 130 / 255, green: 117 / 255, blue: 88 / 255)
         case .cloudWhite: Color(red: 125 / 255, green: 125 / 255, blue: 123 / 255)
+        case .burgundy: Color(red: 70 / 255, green: 40 / 255, blue: 45 / 255)
+        case .glacier: Color(red: 161 / 255, green: 175 / 255, blue: 194 / 255)
+        case .nightSky: Color(red: 90 / 255, green: 106 / 255, blue: 133 / 255)
+        case .starWhite: Color(red: 154 / 255, green: 152 / 255, blue: 144 / 255)
         case .spaceGray: Color(red: 0x26 / 255, green: 0x25 / 255, blue: 0x29 / 255)
         case .starlight: Color(red: 0xFA / 255, green: 0xF6 / 255, blue: 0xF2 / 255)
         // Using Starlight color as fallback
@@ -90,12 +95,12 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         switch model {
         case .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
-            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir,
-            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
+            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
+            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14, .iPhoneDuoOuter, .iPhoneDuoInner:
             10
-        case .iPadAir13M2, .iPadPro13M4: 44
+        case .iPadPro13M5, .iPadAir13M2, .iPadPro13M4: 44
         case .iPadMini, .iPad: 60
-        case .iPadAir11M2, .iPadPro11M4: 54
+        case .iPadPro11M5, .iPadAir11M2, .iPadPro11M4: 54
         }
     }
 
@@ -103,10 +108,11 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         switch model {
         case .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
-            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir,
-            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
+            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
+            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14, .iPhoneDuoOuter, .iPhoneDuoInner:
             return 6
-        case .iPadMini, .iPadAir11M2, .iPadAir13M2, .iPadPro11M4, .iPadPro13M4, .iPad:
+        case .iPadMini, .iPadAir11M2, .iPadAir13M2, .iPadPro11M4, .iPadPro13M4, .iPadPro11M5,
+            .iPadPro13M5, .iPad:
             return 8
         }
     }
@@ -115,7 +121,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         switch model {
         case .iPhone15Pro, .iPhone15ProMax, .iPhone15, .iPhone15Plus,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
-            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir,
+            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
             .iPhone14Pro, .iPhone14ProMax:
             DynamicIsLandViewModel(
                 size: CGSize(width: 123, height: 36),
@@ -128,15 +134,43 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
 
     var bezelRadius: CGFloat {
         switch model {
-        case .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
+        case .iPhone18ProMax, .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
             .iPhone15ProMax, .iPhone15Plus, .iPhone14Plus, .iPhone14ProMax:
             55
-        case .iPhone17Pro, .iPhone16Pro: 62
+        case .iPhoneDuoOuter: 58
+        case .iPhoneDuoInner: 53
+        case .iPhone18Pro, .iPhone17Pro, .iPhone16Pro: 62
         case .iPhone17, .iPhone16, .iPhone15, .iPhone15Pro, .iPhone14Pro, .iPhone14: 47.33
-        case .iPadPro11M4, .iPadPro13M4: 30
+        case .iPadPro11M5, .iPadPro13M5, .iPadPro11M4, .iPadPro13M4: 30
         case .iPadAir11M2, .iPadAir13M2: 18
         case .iPadMini: 21.5
         case .iPad: 0
+        }
+    }
+
+    /// The iPhone Duo outer display has tight corners along the hinge, which is on the leading edge
+    /// in portrait and the bottom edge in landscape. Every other screen keeps `RoundedRectangle`:
+    /// an `UnevenRoundedRectangle` with equal radii anti-aliases its corners differently.
+    var screenShape: AnyShape {
+        switch (model, orientation) {
+        case (.iPhoneDuoOuter, .portrait):
+            AnyShape(
+                UnevenRoundedRectangle(
+                    cornerRadii: RectangleCornerRadii(
+                        topLeading: 8, bottomLeading: 8, bottomTrailing: 58, topTrailing: 58),
+                    style: .circular
+                )
+            )
+        case (.iPhoneDuoOuter, .landscape):
+            AnyShape(
+                UnevenRoundedRectangle(
+                    cornerRadii: RectangleCornerRadii(
+                        topLeading: 58, bottomLeading: 8, bottomTrailing: 8, topTrailing: 58),
+                    style: .circular
+                )
+            )
+        default:
+            AnyShape(RoundedRectangle(cornerRadius: bezelRadius))
         }
     }
 }

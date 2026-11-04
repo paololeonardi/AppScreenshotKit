@@ -75,6 +75,6 @@ extension AppScreenshotSize {
     /// a comprehensive set of screenshot specifications for all supported devices.
     static var all: [AppScreenshotSize] {
         Self.iPad97InchAll + Self.iPad110InchAll + Self.iPad130InchAll + Self.iPhone61InchAll
-            + Self.iPhone63InchAll + Self.iPhone69InchAll
+            + Self.iPhone63InchAll + Self.iPhone69InchAll + Self.iPhoneDuoAll
     }
 }
