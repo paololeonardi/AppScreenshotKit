@@ -12,6 +12,7 @@ import SwiftUI
 protocol DeviceAppearanceViewModel {
     var bezelWidth: CGFloat { get }
     var bezelRadius: CGFloat { get }
+    var screenShape: AnyShape { get }
     var deviceViewSize: CGSize { get }
     var deviceFrameWidth: CGFloat { get }
     var deviceColor: Color { get }
@@ -134,15 +135,42 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
     var bezelRadius: CGFloat {
         switch model {
         case .iPhone18ProMax, .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
-            .iPhone15ProMax, .iPhone15Plus, .iPhone14Plus, .iPhone14ProMax, .iPhoneDuoOuter,
-            .iPhoneDuoInner:
+            .iPhone15ProMax, .iPhone15Plus, .iPhone14Plus, .iPhone14ProMax:
             55
+        case .iPhoneDuoOuter: 58
+        case .iPhoneDuoInner: 53
         case .iPhone18Pro, .iPhone17Pro, .iPhone16Pro: 62
         case .iPhone17, .iPhone16, .iPhone15, .iPhone15Pro, .iPhone14Pro, .iPhone14: 47.33
         case .iPadPro11M5, .iPadPro13M5, .iPadPro11M4, .iPadPro13M4: 30
         case .iPadAir11M2, .iPadAir13M2: 18
         case .iPadMini: 21.5
         case .iPad: 0
+        }
+    }
+
+    /// The iPhone Duo outer display has tight corners along the hinge, which is on the leading edge
+    /// in portrait and the bottom edge in landscape. Every other screen keeps `RoundedRectangle`:
+    /// an `UnevenRoundedRectangle` with equal radii anti-aliases its corners differently.
+    var screenShape: AnyShape {
+        switch (model, orientation) {
+        case (.iPhoneDuoOuter, .portrait):
+            AnyShape(
+                UnevenRoundedRectangle(
+                    cornerRadii: RectangleCornerRadii(
+                        topLeading: 8, bottomLeading: 8, bottomTrailing: 58, topTrailing: 58),
+                    style: .circular
+                )
+            )
+        case (.iPhoneDuoOuter, .landscape):
+            AnyShape(
+                UnevenRoundedRectangle(
+                    cornerRadii: RectangleCornerRadii(
+                        topLeading: 58, bottomLeading: 8, bottomTrailing: 8, topTrailing: 58),
+                    style: .circular
+                )
+            )
+        default:
+            AnyShape(RoundedRectangle(cornerRadius: bezelRadius))
         }
     }
 }

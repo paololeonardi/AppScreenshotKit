@@ -64,10 +64,6 @@ struct ScreenContentView<Content: View>: View {
         #elseif canImport(AppKit)
             .background(Color(NSColor.windowBackgroundColor))
         #endif
-        .clipShape(
-            RoundedRectangle(
-                cornerRadius: model.bezelRadius
-            )
-        )
+        .clipShape(model.screenShape)
     }
 }
