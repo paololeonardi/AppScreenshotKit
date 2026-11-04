@@ -13,6 +13,10 @@ import Testing
 
         private struct NewDevicesScreenshot: AppScreenshot {
             static let configuration = AppScreenshotConfiguration(
+                .iPhoneDuoOuter(),
+                .iPhoneDuoOuter(orientation: .landscape),
+                .iPhoneDuoInner(),
+                .iPhoneDuoInner(orientation: .landscape),
                 .iPhone69Inch(model: .iPhone18ProMax()),
                 .iPad130Inch(model: .iPadPro13M5())
             )
@@ -30,6 +34,10 @@ import Testing
 
             #expect(
                 pixelSizes == [
+                    CGSize(width: 1398, height: 2034),
+                    CGSize(width: 2034, height: 1398),
+                    CGSize(width: 2007, height: 2853),
+                    CGSize(width: 2853, height: 2007),
                     CGSize(width: 1320, height: 2868),
                     CGSize(width: 2048, height: 2732),
                 ]

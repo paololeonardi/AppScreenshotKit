@@ -79,6 +79,8 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         case .cloudWhite: Color(red: 125 / 255, green: 125 / 255, blue: 123 / 255)
         case .burgundy: Color(red: 70 / 255, green: 40 / 255, blue: 45 / 255)
         case .glacier: Color(red: 161 / 255, green: 175 / 255, blue: 194 / 255)
+        case .nightSky: Color(red: 90 / 255, green: 106 / 255, blue: 133 / 255)
+        case .starWhite: Color(red: 154 / 255, green: 152 / 255, blue: 144 / 255)
         case .spaceGray: Color(red: 0x26 / 255, green: 0x25 / 255, blue: 0x29 / 255)
         case .starlight: Color(red: 0xFA / 255, green: 0xF6 / 255, blue: 0xF2 / 255)
         // Using Starlight color as fallback
@@ -93,7 +95,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         case .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
             .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
-            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
+            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14, .iPhoneDuoOuter, .iPhoneDuoInner:
             10
         case .iPadPro13M5, .iPadAir13M2, .iPadPro13M4: 44
         case .iPadMini, .iPad: 60
@@ -106,7 +108,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         case .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
             .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
-            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
+            .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14, .iPhoneDuoOuter, .iPhoneDuoInner:
             return 6
         case .iPadMini, .iPadAir11M2, .iPadAir13M2, .iPadPro11M4, .iPadPro13M4, .iPadPro11M5,
             .iPadPro13M5, .iPad:
@@ -132,7 +134,8 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
     var bezelRadius: CGFloat {
         switch model {
         case .iPhone18ProMax, .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
-            .iPhone15ProMax, .iPhone15Plus, .iPhone14Plus, .iPhone14ProMax:
+            .iPhone15ProMax, .iPhone15Plus, .iPhone14Plus, .iPhone14ProMax, .iPhoneDuoOuter,
+            .iPhoneDuoInner:
             55
         case .iPhone18Pro, .iPhone17Pro, .iPhone16Pro: 62
         case .iPhone17, .iPhone16, .iPhone15, .iPhone15Pro, .iPhone14Pro, .iPhone14: 47.33

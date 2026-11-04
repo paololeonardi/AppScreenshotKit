@@ -51,6 +51,16 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             case .portrait: CGSize(width: 390, height: 844)
             case .landscape: CGSize(width: 844, height: 390)
             }
+        case .iPhoneDuoOuter:
+            return switch orientation {
+            case .portrait: CGSize(width: 466, height: 678)
+            case .landscape: CGSize(width: 678, height: 466)
+            }
+        case .iPhoneDuoInner:
+            return switch orientation {
+            case .portrait: CGSize(width: 669, height: 951)
+            case .landscape: CGSize(width: 951, height: 669)
+            }
         case .iPadPro11M5:
             return switch orientation {
             case .portrait: CGSize(width: 834, height: 1210)
@@ -116,6 +126,17 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
             case .portrait: EdgeInsets(top: 59, leading: 0, bottom: 34, trailing: 0)
             case .landscape: EdgeInsets(top: 0, leading: 59, bottom: 21, trailing: 59)
             }
+        case .iPhoneDuoOuter:
+            // The bars follow the corner camera, which Apple's landscape bezel draws on the left.
+            return switch orientation {
+            case .portrait: EdgeInsets(top: 0, leading: 0, bottom: 34, trailing: 84)
+            case .landscape: EdgeInsets(top: 0, leading: 84, bottom: 34, trailing: 0)
+            }
+        case .iPhoneDuoInner:
+            return switch orientation {
+            case .portrait: EdgeInsets(top: 82, leading: 0, bottom: 34, trailing: 0)
+            case .landscape: EdgeInsets(top: 0, leading: 0, bottom: 34, trailing: 84)
+            }
         case .iPad:
             return EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
         case .iPadMini:
@@ -128,6 +149,7 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
     }
 
     var horizontalSizeClass: UserInterfaceSizeClass {
+        if model == .iPhoneDuoInner { return .regular }
         switch model.category {
         case .iPad:
             // iPadは常にregular
@@ -150,6 +172,7 @@ extension AppScreenshotDevice: DeviceScreenViewModel {
     }
 
     var verticalSizeClass: UserInterfaceSizeClass {
+        if model == .iPhoneDuoInner { return .regular }
         switch model.category {
         case .iPad:
             // iPadは常にregular

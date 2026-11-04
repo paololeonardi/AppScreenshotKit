@@ -182,6 +182,26 @@ final class BezelImageLoaderTests {
             #"iPad Pro (M5) 13" - Silver - Landscape.png"#,
             #"iPad Pro (M5) 13" - Silver - Portrait.png"#
         ),
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .nightSky, model: .iPhoneDuoOuter),
+            "iPhone Duo - Night Sky - Outer Closed Portrait.png",
+            "iPhone Duo - Night Sky - Outer Closed Landscape.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .starWhite, model: .iPhoneDuoOuter),
+            "iPhone Duo - Star White - Outer Closed Landscape.png",
+            "iPhone Duo - Star White - Outer Closed Portrait.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .nightSky, model: .iPhoneDuoInner),
+            "iPhone Duo - Night Sky - Inner Open Portrait.png",
+            "iPhone Duo - Night Sky - Inner Open Landscape.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .starWhite, model: .iPhoneDuoInner),
+            "iPhone Duo - Star White - Inner Open Landscape.png",
+            "iPhone Duo - Star White - Inner Open Portrait.png"
+        ),
     ])
     func findsBezelNamedAsApple(
         device: AppScreenshotDevice,

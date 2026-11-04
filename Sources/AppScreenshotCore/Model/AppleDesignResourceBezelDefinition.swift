@@ -37,6 +37,24 @@ struct AppleDesignResourceBezelDefinition {
                 self.imageSize = CGSize(width: 2760, height: 1350)
                 self.screenRect = CGRect(x: 69, y: 72, width: 2622, height: 1206)
             }
+        case .iPhoneDuoOuter:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1574, height: 2194)
+                self.screenRect = CGRect(x: 88, y: 80, width: 1398, height: 2034)
+            case .landscape:
+                self.imageSize = CGSize(width: 2194, height: 1574)
+                self.screenRect = CGRect(x: 80, y: 88, width: 2034, height: 1398)
+            }
+        case .iPhoneDuoInner:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 2247, height: 3093)
+                self.screenRect = CGRect(x: 120, y: 120, width: 2007, height: 2853)
+            case .landscape:
+                self.imageSize = CGSize(width: 3093, height: 2247)
+                self.screenRect = CGRect(x: 120, y: 120, width: 2853, height: 2007)
+            }
         case .iPhone17ProMax:
             switch orientation {
             case .portrait:

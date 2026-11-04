@@ -170,4 +170,14 @@ package enum AppScreenshoSamples {
             sizes: AppScreenshotSize.iPhone14ProMaxAll
         )
     }
+    package enum AppScreenshotIPhoneDuoOuter: AppScreenshoSample {
+        package static let configuration = AppScreenshotConfiguration(
+            sizes: AppScreenshotSize.iPhoneDuoOuterAll
+        )
+    }
+    package enum AppScreenshotIPhoneDuoInner: AppScreenshoSample {
+        package static let configuration = AppScreenshotConfiguration(
+            sizes: AppScreenshotSize.iPhoneDuoInnerAll
+        )
+    }
 }

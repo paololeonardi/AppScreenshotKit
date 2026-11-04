@@ -10,6 +10,8 @@ import Foundation
 public enum DeviceModel: String, Sendable {
     case iPhone18ProMax = "iPhone 18 Pro Max"
     case iPhone18Pro = "iPhone 18 Pro"
+    case iPhoneDuoOuter = "iPhone Duo Outer"
+    case iPhoneDuoInner = "iPhone Duo Inner"
 
     case iPhone17ProMax = "iPhone 17 Pro Max"
     case iPhone17Pro = "iPhone 17 Pro"
@@ -57,6 +59,8 @@ public enum DeviceModel: String, Sendable {
             .iPhone14Pro:
             "6_3"
         case .iPhone14: "6_1"
+        case .iPhoneDuoOuter: "duo_outer"
+        case .iPhoneDuoInner: "duo_inner"
         case .iPadPro13M5, .iPadAir13M2, .iPadPro13M4: "13"
         case .iPadPro11M5, .iPadAir11M2, .iPadPro11M4: "11"
         case .iPad, .iPadMini: "9_7"
