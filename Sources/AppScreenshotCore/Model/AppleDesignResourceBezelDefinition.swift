@@ -19,6 +19,24 @@ struct AppleDesignResourceBezelDefinition {
     ///   - orientation: The device orientation (portrait or landscape).
     init(deviceModel: DeviceModel, orientation: DeviceOrientation) {
         switch deviceModel {
+        case .iPhone18ProMax:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1470, height: 3000)
+                self.screenRect = CGRect(x: 75, y: 66, width: 1320, height: 2868)
+            case .landscape:
+                self.imageSize = CGSize(width: 3000, height: 1470)
+                self.screenRect = CGRect(x: 66, y: 76, width: 2868, height: 1320)
+            }
+        case .iPhone18Pro:
+            switch orientation {
+            case .portrait:
+                self.imageSize = CGSize(width: 1350, height: 2760)
+                self.screenRect = CGRect(x: 72, y: 69, width: 1206, height: 2622)
+            case .landscape:
+                self.imageSize = CGSize(width: 2760, height: 1350)
+                self.screenRect = CGRect(x: 69, y: 72, width: 2622, height: 1206)
+            }
         case .iPhone17ProMax:
             switch orientation {
             case .portrait:

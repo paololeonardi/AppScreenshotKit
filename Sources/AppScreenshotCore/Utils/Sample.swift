@@ -85,6 +85,11 @@ package enum AppScreenshoSamples {
             sizes: AppScreenshotSize.iPhone16ProAll
         )
     }
+    package enum AppScreenshotIPhone18Pro: AppScreenshoSample {
+        package static let configuration = AppScreenshotConfiguration(
+            sizes: AppScreenshotSize.iPhone18ProAll
+        )
+    }
     package enum AppScreenshotIPhone17Pro: AppScreenshoSample {
         package static let configuration = AppScreenshotConfiguration(
             sizes: AppScreenshotSize.iPhone17ProAll
@@ -118,6 +123,11 @@ package enum AppScreenshoSamples {
     package enum AppScreenshotIPhone16ProMax: AppScreenshoSample {
         package static let configuration = AppScreenshotConfiguration(
             sizes: AppScreenshotSize.iPhone16ProMaxAll
+        )
+    }
+    package enum AppScreenshotIPhone18ProMax: AppScreenshoSample {
+        package static let configuration = AppScreenshotConfiguration(
+            sizes: AppScreenshotSize.iPhone18ProMaxAll
         )
     }
     package enum AppScreenshotIPhone17ProMax: AppScreenshoSample {

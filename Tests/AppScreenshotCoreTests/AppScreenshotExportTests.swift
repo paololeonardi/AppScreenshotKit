@@ -1,0 +1,43 @@
+import CoreGraphics
+import Foundation
+import ImageIO
+import SwiftUI
+import Testing
+
+@testable import AppScreenshotCore
+
+// macOS renders at the display's backing scale, so exact pixel sizes only hold on iOS.
+#if canImport(UIKit)
+    @Suite
+    struct AppScreenshotExportTests {
+
+        private struct NewDevicesScreenshot: AppScreenshot {
+            static let configuration = AppScreenshotConfiguration(
+                .iPhone69Inch(model: .iPhone18ProMax())
+            )
+
+            static func body(environment: AppScreenshotEnvironment) -> some View {
+                Color.blue
+            }
+        }
+
+        @Test @MainActor
+        func exportsAtAppStoreScreenshotSize() throws {
+            let outputs = try NewDevicesScreenshot.export()
+
+            let pixelSizes = try outputs.map { try pixelSize(of: $0.imageData) }
+
+            #expect(
+                pixelSizes == [
+                    CGSize(width: 1320, height: 2868)
+                ]
+            )
+        }
+
+        private func pixelSize(of imageData: Data) throws -> CGSize {
+            let source = try #require(CGImageSourceCreateWithData(imageData as CFData, nil))
+            let image = try #require(CGImageSourceCreateImageAtIndex(source, 0, nil))
+            return CGSize(width: image.width, height: image.height)
+        }
+    }
+#endif

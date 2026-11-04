@@ -77,6 +77,8 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         case .skyBlue: Color(red: 106 / 255, green: 121 / 255, blue: 131 / 255)
         case .lightGold: Color(red: 130 / 255, green: 117 / 255, blue: 88 / 255)
         case .cloudWhite: Color(red: 125 / 255, green: 125 / 255, blue: 123 / 255)
+        case .burgundy: Color(red: 70 / 255, green: 40 / 255, blue: 45 / 255)
+        case .glacier: Color(red: 161 / 255, green: 175 / 255, blue: 194 / 255)
         case .spaceGray: Color(red: 0x26 / 255, green: 0x25 / 255, blue: 0x29 / 255)
         case .starlight: Color(red: 0xFA / 255, green: 0xF6 / 255, blue: 0xF2 / 255)
         // Using Starlight color as fallback
@@ -90,7 +92,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         switch model {
         case .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
-            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir,
+            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
             .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
             10
         case .iPadAir13M2, .iPadPro13M4: 44
@@ -103,7 +105,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         switch model {
         case .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
-            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir,
+            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
             .iPhone14ProMax, .iPhone14Plus, .iPhone14Pro, .iPhone14:
             return 6
         case .iPadMini, .iPadAir11M2, .iPadAir13M2, .iPadPro11M4, .iPadPro13M4, .iPad:
@@ -115,7 +117,7 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
         switch model {
         case .iPhone15Pro, .iPhone15ProMax, .iPhone15, .iPhone15Plus,
             .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax,
-            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir,
+            .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir, .iPhone18Pro, .iPhone18ProMax,
             .iPhone14Pro, .iPhone14ProMax:
             DynamicIsLandViewModel(
                 size: CGSize(width: 123, height: 36),
@@ -128,10 +130,10 @@ extension AppScreenshotDevice: DeviceAppearanceViewModel {
 
     var bezelRadius: CGFloat {
         switch model {
-        case .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
+        case .iPhone18ProMax, .iPhone17ProMax, .iPhoneAir, .iPhone16ProMax, .iPhone16Plus,
             .iPhone15ProMax, .iPhone15Plus, .iPhone14Plus, .iPhone14ProMax:
             55
-        case .iPhone17Pro, .iPhone16Pro: 62
+        case .iPhone18Pro, .iPhone17Pro, .iPhone16Pro: 62
         case .iPhone17, .iPhone16, .iPhone15, .iPhone15Pro, .iPhone14Pro, .iPhone14: 47.33
         case .iPadPro11M4, .iPadPro13M4: 30
         case .iPadAir11M2, .iPadAir13M2: 18

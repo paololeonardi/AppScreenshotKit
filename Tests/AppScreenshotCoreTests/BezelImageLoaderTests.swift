@@ -158,4 +158,33 @@ final class BezelImageLoaderTests {
 
         #expect(data == expectedData)
     }
+
+    // MARK: - Apple Design Resources file names
+
+    @Test(arguments: [
+        (
+            AppScreenshotDevice(orientation: .portrait, color: .black, model: .iPhone18ProMax),
+            "iPhone 18 Pro Max - Black - Portrait.png",
+            "iPhone 18 Pro Max - Black - Landscape.png"
+        ),
+        (
+            AppScreenshotDevice(orientation: .landscape, color: .glacier, model: .iPhone18ProMax),
+            "iPhone 18 Pro Max - Glacier - Landscape.png",
+            "iPhone 18 Pro Max - Glacier - Portrait.png"
+        ),
+    ])
+    func findsBezelNamedAsApple(
+        device: AppScreenshotDevice,
+        fileName: String,
+        otherOrientationFileName: String
+    ) throws {
+        let baseDirectory = tempRootURL.appending(path: "AppleDesignResource")
+        let payload = Data(fileName.utf8)
+        try writeBezelFile(under: baseDirectory, fileName: fileName, contents: payload)
+        try writeBezelFile(under: baseDirectory, fileName: otherOrientationFileName)
+
+        let data = try BezelImageLoader().imageData(device, resourceBaseURL: baseDirectory)
+
+        #expect(data == payload)
+    }
 }
